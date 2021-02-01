@@ -1,1 +1,0 @@
-# laboratorium_PRiR
