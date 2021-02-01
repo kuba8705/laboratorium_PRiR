@@ -1,0 +1,23 @@
+Programowanie równoległę i rozproszone
+Sprawozdanie z laboratorium nr 11
+Jakub Jakimiuk
+
+Algorytm umożliwia transfer stylu. Polega to na wygenerowaniu obrazu z tą samą
+zawartością co obraz podstawowy, ale ze stylem innego obrazu.
+
+Zaczynamy od zaimportowania odpowiednich bibliotek takich jak numpy, tensorflow, keras i vgg19.
+
+Następnie importujemy obrazy, określamy wagi składników strat oraz wymiary generowanego obrazu.
+
+Następnie tworzymy odpowiednie funkcje które będą nam potrzebne do dalszej pracy:
+
+- preprocess_image - Otwieranie obrazów,zmiana rozmiaru i formatowanie obrazów do odpowiednich tensorów.
+- deprocess_image - Funkcja przydatna do konwersji tensora na prawidłowy obraz.
+- gram_matrix - Określa matryce gramowe tensora obrazu.
+- style_loss - Utrata stylu. Utrata stylu ma na celu utrzymanie stylu obrazu odniesienia w wygenerowanym obrazie.
+- content_loss i total_variation_loss - Funkcje pomocnicze utraty zaprojektowane w celu utrzymania „zawartości” obrazu
+podstawowego w wygenerowanym obrazie.
+
+Uzyskujemy symboliczne dane wyjściowe każdej warstwy „klucza” (nadaliśmy im unikalne nazwy).
+
+zródło kodu: https://github.com/keras-team/keras-io/blob/master/examples/generative/neural_style_transfer.py
