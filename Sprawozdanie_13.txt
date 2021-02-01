@@ -1,0 +1,33 @@
+Programowanie równoległę i rozproszone
+Sprawozdanie z laboratorium nr 13
+Jakub Jakimiuk
+
+Program wyszukujacy najkrótszą scieżke za pomocą Algorytm Dijkstry przy pomocy MPI
+
+Algorytm działa dla ważonego grafu ukierunkowanego podanego jako macierz przylegania.
+Algorytm Dijkstry znajduje najkrótszą ścieżkę od źródła do każdego innego wierzchołka.
+
+Dane wejściowe:
+- n: liczba wierzchołków
+- mat: macierz, gdzie mat [i] [j] jest długością od wierzchołka i do j
+
+
+Dane wyjściowe:
+- Długość najkrótszej ścieżki od wierzchołka zerowego do wierzchołka v
+- Najkrótsza ścieżka do każdego wierzchołka v od wierzchołka zerowego
+
+Algorytm:
+Macierz "mat" jest dzielona tak, że każdy proces otrzymuje własne kolumny. W każdej
+iteracji każdy proces znajduje swój lokalny wierzchołek o najkrótszej odległości z
+wierzchołka źródłowego. Z Globalnego minimalnego wierzchołka obliczane są najkrótsze
+odległości, a następnie każdy proces jest aktualizowany jego lokalną tablicą odległości,
+jeśli istnieje krótsza ścieżka, która przechodzi przez minimalny wierzchołek.
+
+- Program zakłada, że ​​liczba wierzchołków jest równo podzielne przez liczbe procesów
+- Waga krawędzi nie powinna być ujemna
+- Jeśli nie ma krawędzi między dwoma dowolnymi wierzchołkami, waga jest INFINITY
+- Koszt dojazdu do siebie samego wynosi 0
+- Macierz sąsiedztwa jest przechowywana jako 1-wymiarowa tablica i indeksy dolne
+są obliczane przy użyciu A [n * i + j], aby uzyskać A [i] [j] w przypadku dwuwymiarowym
+
+zródło: https://github.com/Lehmannhen/MPI-Dijkstra/blob/master/src/mpi_Dijkstra.c
